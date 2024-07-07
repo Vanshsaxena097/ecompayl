@@ -18,7 +18,7 @@ ENV NODE_ENV=production
 ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js
 # Add this line to set the PAYLOAD_SECRET for runtime
 ENV PAYLOAD_SECRET=your123
-DATABASE_URI=mongodb+srv://vanshsaxena2024:Vanshsaxena@cluster0.rxdajgm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+ENV DATABASE_URI=mongodb+srv://vanshsaxena2024:Vanshsaxena@cluster0.rxdajgm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 WORKDIR /home/node/app
 COPY package*.json  ./
