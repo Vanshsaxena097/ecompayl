@@ -13,6 +13,8 @@ FROM base AS runtime
 
 ENV NODE_ENV=production
 ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js
+# Add this line to set PAYLOAD_SECRET
+ENV PAYLOAD_SECRET=your123
 
 WORKDIR /home/node/app
 COPY package*.json  ./
