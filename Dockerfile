@@ -10,6 +10,7 @@ FROM node:18.8-alpine AS base
 
 # Set the PAYLOAD_SECRET directly
 ENV PAYLOAD_SECRET=your123
+ENV DATABASE_URI=mongodb+srv://vanshsaxena2024:Vanshsaxena@cluster0.rxdajgm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 FROM base AS builder
 
