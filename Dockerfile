@@ -1,14 +1,5 @@
 FROM node:18.8-alpine AS base
 
-FROM base AS builder
-
-WORKDIR /home/node/app
-COPY package*.json ./
-
-COPY . .
-FROM node:18.8-alpine AS base
-
-# Set the PAYLOAD_SECRET directly
 ENV PAYLOAD_SECRET=your123
 ENV DATABASE_URI=mongodb+srv://vanshsaxena2024:Vanshsaxena@cluster0.rxdajgm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
@@ -20,11 +11,13 @@ COPY package*.json ./
 COPY . .
 RUN yarn install
 RUN yarn build
+# Ensure the payload config file is copied to the correct location in dist
+RUN mkdir -p dist/payload && cp src/payload/payload.config.ts dist/payload/payload.config.js
 
 FROM base AS runtime
 
 ENV NODE_ENV=production
-ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js
+ENV PAYLOAD_CONFIG_PATH=dist/payload/payload.config.js
 
 WORKDIR /home/node/app
 COPY package*.json  ./
