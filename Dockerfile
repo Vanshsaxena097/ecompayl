@@ -11,8 +11,12 @@ COPY package*.json ./
 COPY . .
 RUN yarn install
 RUN yarn build
-# Ensure the payload config file is copied to the correct location in dist
-RUN mkdir -p dist/payload && cp src/payload/payload.config.ts dist/payload/payload.config.js
+
+# Ensure TypeScript is installed
+RUN yarn add typescript @types/node --dev
+
+# Transpile the payload config file
+RUN npx tsc src/payload/payload.config.ts --outDir dist/payload --esModuleInterop --module commonjs
 
 FROM base AS runtime
 
